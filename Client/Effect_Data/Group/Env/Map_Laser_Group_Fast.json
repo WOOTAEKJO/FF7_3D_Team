@@ -1,0 +1,46 @@
+{
+  "GameObject": {
+    "Data": [
+      {
+        "WorldMatrix": [
+          [ -4.549814548227005e-05, -8.280325036746916e-11, 50.0, 0.0 ],
+          [ -7.279703595486353e-07, 0.20000000298023224, -3.312130029877597e-13, 0.0 ],
+          [ -0.20000000298023224, -7.279703595486353e-07, -1.8199258988715883e-07, 0.0 ],
+          [ 0.0, 0.0, 0.0, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 2,
+        "fStartTime": 0.0,
+        "strFileName": "Map_Laser_Init_Fast",
+        "strFilePath": "C:\\SourceTree\\3D_TeamProject\\Framework\\Client\\Bin\\Data\\Effect_Data\\Trail\\Map_Laser_Init_Fast.json"
+      },
+      {
+        "WorldMatrix": [
+          [ -4.549814548227005e-05, -8.280325036746916e-11, 50.0, 0.0 ],
+          [ -1.60336094268132e-06, 0.4405013918876648, -7.294985470730764e-13, 0.0 ],
+          [ -0.4405013918876648, -1.60336094268132e-06, -4.0084023567033e-07, 0.0 ],
+          [ 0.0, 0.0, 0.0, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 2,
+        "fStartTime": 0.4000000059604645,
+        "strFileName": "Map_Laser_Main_Fast",
+        "strFilePath": "C:\\SourceTree\\3D_TeamProject\\Framework\\Client\\Bin\\Data\\Effect_Data\\Trail\\Map_Laser_Main_Fast.json"
+      },
+      {
+        "WorldMatrix": [
+          [ -4.549814548227005e-05, -8.280325036746916e-11, 50.0, 0.0 ],
+          [ -7.972354865160014e-07, 0.21902957558631897, -3.6272729069496135e-13, 0.0 ],
+          [ -0.21902957558631897, -7.972354865160014e-07, -1.9930887162900035e-07, 0.0 ],
+          [ 0.0, 0.0, 0.0, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 2,
+        "fStartTime": 0.4000000059604645,
+        "strFileName": "Map_Laser_Sub_Fast",
+        "strFilePath": "C:\\SourceTree\\3D_TeamProject\\Framework\\Client\\Bin\\Data\\Effect_Data\\Trail\\Map_Laser_Sub_Fast.json"
+      }
+    ],
+    "OwnerType": 0
+  }
+}

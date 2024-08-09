@@ -1,0 +1,657 @@
+{
+  "GameObject": {
+    "Data": [
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 15.553336143493652, -0.34634166955947876, 9.2440185546875, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 1.0,
+        "strFileName": "Train1Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\Train1Smoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ -2.9741270542144775, -0.8163899183273315, 8.890890121459961, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 3.0,
+        "strFileName": "Train1Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\Train1Smoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ -19.21253204345703, -0.6017566919326782, 9.066859245300293, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 2.0,
+        "strFileName": "Train1Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\Train1Smoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ -33.18661880493164, -0.18752989172935486, 9.101818084716797, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "Train1Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\Train1Smoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ -8.628886222839355, -0.4000000059604645, 11.725347518920898, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 1.0,
+        "strFileName": "UnderVent_Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\UnderVent_Smoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ -8.499310493469238, -0.35083234310150146, 19.08289909362793, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "UnderVent_Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\UnderVent_Smoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 1.8654229640960693, -0.3067634105682373, 16.581056594848633, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 2.0,
+        "strFileName": "UnderVent_Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\UnderVent_Smoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 13.306499481201172, -0.1355183720588684, 16.60850715637207, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 4.0,
+        "strFileName": "UnderVent_Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\UnderVent_Smoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ -9.70847225189209, 7.6258440017700195, 25.00328254699707, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "Vent_Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\Vent_Smoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ -9.4736909866333, 7.660611152648926, 29.92254066467285, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 2.0,
+        "strFileName": "Vent_Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\Vent_Smoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ -4.290735244750977, 11.697832107543945, 27.937969207763672, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "Vent_Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\Vent_Smoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 23.59329605102539, 12.32975959777832, 28.406147003173828, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 1.0,
+        "strFileName": "Vent_Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\Vent_Smoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 19.0567626953125, 0.9449976682662964, 17.21952247619629, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "MachineSmoke1",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\MachineSmoke1.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 19.307403564453125, 0.3683335781097412, 15.868439674377441, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "MachineSmoke2",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\MachineSmoke2.json"
+      },
+      {
+        "WorldMatrix": [
+          [ -0.9732571840286255, -4.091682058060542e-06, -0.22971169650554657, 0.0 ],
+          [ -2.14302394851984e-06, 1.0, -8.732547030376736e-06, 0.0 ],
+          [ 0.22971169650554657, -8.006736607057974e-06, -0.9732571840286255, 0.0 ],
+          [ 63.39486312866211, 7.063538074493408, 27.28104591369629, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 1.0,
+        "strFileName": "MachineSmoke1",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\MachineSmoke1.json"
+      },
+      {
+        "WorldMatrix": [
+          [ -0.6054763793945313, -1.1019221801689127e-06, -0.7958624362945557, 0.0 ],
+          [ -3.7151426113268826e-07, 1.0, -1.101922862289939e-06, 0.0 ],
+          [ 0.7958624362945557, -3.715140053373034e-07, -0.6054763793945313, 0.0 ],
+          [ 67.86082458496094, 7.345457553863525, 27.258455276489258, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 2.0,
+        "strFileName": "MachineSmoke1",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\MachineSmoke1.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 63.13413619995117, 7.1705498695373535, 25.778114318847656, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 2.0,
+        "strFileName": "MachineSmoke2",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\MachineSmoke2.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 67.86573791503906, 7.164774417877197, 25.476856231689453, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "MachineSmoke2",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\MachineSmoke2.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 60.880470275878906, 17.091201782226563, -24.752071380615234, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "BigVent_Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BigVent_Smoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 86.6853256225586, 8.748224258422852, -8.781850814819336, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "GasCan_Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\GasCan_Smoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 72.28791809082031, 0.7802286148071289, 40.580135345458984, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "BigPipe_Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BigPipe_Smoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 95.42919921875, 15.332596778869629, 3.357408046722412, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "FenceUpPipeSmoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\FenceUpPipeSmoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 95.56253051757813, 20.00177764892578, 31.6269474029541, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "WallSmallPipeSmoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\WallSmallPipeSmoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 82.185546875, 8.510965347290039, 4.051841735839844, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "Pipe1",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\Pipe1.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 75.30590057373047, 26.15616798400879, 46.98836135864258, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "BigPipe_Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BigPipe_Smoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 81.93378448486328, 4.655858516693115, 10.144241333007813, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 2.0,
+        "strFileName": "UnderVent_Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\UnderVent_Smoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 81.60868072509766, 4.93992805480957, 16.47014808654785, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "UnderVent_Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\UnderVent_Smoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 81.09791564941406, 1.946514368057251, 50.30997085571289, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 1.0,
+        "strFileName": "BridgeUnderSmokeLeft",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BridgeUnderSmokeLeft.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 80.8772964477539, 2.0832691192626953, 56.99187469482422, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 3.0,
+        "strFileName": "BridgeUnderSmokeLeft",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BridgeUnderSmokeLeft.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 81.15186309814453, 1.9243884086608887, 63.3760871887207, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 2.299999952316284,
+        "strFileName": "BridgeUnderSmokeLeft",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BridgeUnderSmokeLeft.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 87.0, 2.0749292373657227, 50.36298751831055, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.5,
+        "strFileName": "BridgeUnderSmokeRight",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BridgeUnderSmokeRight.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 87.0, 1.97738516330719, 56.764610290527344, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 3.0,
+        "strFileName": "BridgeUnderSmokeRight",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BridgeUnderSmokeRight.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 87.0, 1.8346675634384155, 63.232913970947266, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 2.0,
+        "strFileName": "BridgeUnderSmokeRight",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BridgeUnderSmokeRight.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 78.66651916503906, 1.7355834245681763, 95.93257141113281, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "BridgeUnderSmoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BridgeUnderSmoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 115.83382415771484, -0.03289061784744263, 71.95036315917969, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "BridgeUnderSmoke2",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BridgeUnderSmoke2.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 107.10990905761719, 14.886009216308594, 106.54508972167969, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "BridgeUnderSmoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BridgeUnderSmoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 88.87094116210938, -0.2390674352645874, 104.32892608642578, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "BridgeUnderSmoke2",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BridgeUnderSmoke2.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 77.99176025390625, 2.1859586238861084, 75.5100326538086, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "BridgeUnderSmoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BridgeUnderSmoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 124.0479965209961, 2.1049129962921143, 92.38072204589844, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 2.0,
+        "strFileName": "BridgeUnderSmokeLeft2",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BridgeUnderSmokeLeft2.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 130.3804473876953, 2.1069540977478027, 92.11160278320313, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "BridgeUnderSmokeLeft2",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BridgeUnderSmokeLeft2.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 123.81283569335938, 2.289281129837036, 86.36922454833984, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "BridgeUnderSmokeRight2",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BridgeUnderSmokeRight2.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 130.29769897460938, 2.0779926776885986, 86.24735260009766, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "BridgeUnderSmokeRight2",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BridgeUnderSmokeRight2.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 164.64520263671875, 3.66430926322937, 77.63175201416016, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "MakoPipeSmoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\MakoPipeSmoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 143.64370727539063, 4.0414719581604, 72.8016586303711, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 2.0,
+        "strFileName": "MakoPipeSmoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\MakoPipeSmoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 139.8119659423828, -1.0008087158203125, 78.23224639892578, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "MakoPipeSmoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\MakoPipeSmoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 179.07359313964844, 3.6519999504089355, 76.79271697998047, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "MakoPipeSmoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\MakoPipeSmoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 75.74251556396484, 2.351550579071045, 10.605794906616211, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 3.0,
+        "strFileName": "BigPipe_Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BigPipe_Smoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 40.714996337890625, 5.449255466461182, 43.696346282958984, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 3.0,
+        "strFileName": "BigPipe_Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BigPipe_Smoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 57.04963302612305, -2.9732205867767334, 36.84939193725586, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 0.0,
+        "strFileName": "BigPipe_Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BigPipe_Smoke.json"
+      },
+      {
+        "WorldMatrix": [
+          [ 1.0, 0.0, 0.0, 0.0 ],
+          [ 0.0, 1.0, 0.0, 0.0 ],
+          [ 0.0, 0.0, 1.0, 0.0 ],
+          [ 71.383544921875, -2.7121191024780273, 20.38688087463379, 1.0 ]
+        ],
+        "bEnd": false,
+        "eEffectType": 0,
+        "fStartTime": 6.0,
+        "strFileName": "BigPipe_Smoke",
+        "strFilePath": "C:\\Users\\hs534\\Documents\\Team\\Framework\\Client\\Bin\\Data\\Effect_Data\\Particle\\Env\\BigPipe_Smoke.json"
+      }
+    ],
+    "OwnerType": 0
+  }
+}

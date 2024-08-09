@@ -1,0 +1,33 @@
+#pragma once
+#include "Client_Manager.h"
+
+// ---- Main ------
+#include "Boss/Bahamut/State/State_Bahamut_IDLE.h"
+#include "Boss/Bahamut/State/State_Bahamut_Walk.h"
+#include "Boss/Bahamut/State/State_Bahamut_Turn.h"
+#include "Boss/Bahamut/State/State_Bahamut_Dead.h"
+#include "Boss/Bahamut/State/State_Bahamut_MegaFlare.h"
+#include "Boss/Bahamut/State/State_Bahamut_Count.h"
+#include "Boss/Bahamut/State/State_Bahamut_Grab.h"
+#include "Boss/Bahamut/State/State_Bahamut_AerialRave.h"
+#include "Boss/Bahamut/State/State_Bahamut_Aura.h"
+#include "Boss/Bahamut/State/State_Bahamut_Clorush.h"
+#include "Boss/Bahamut/State/State_Bahamut_FlareBreath.h"
+#include "Boss/Bahamut/State/State_Bahamut_SpinRush.h"
+#include "Boss/Bahamut/State/State_Bahamut_DarkClaw.h"
+#include "Boss/Bahamut/State/State_Bahamut_HeavyStrike.h"
+#include "Boss/Bahamut/State/State_Bahamut_Inferno.h"
+#include "Boss/Bahamut/State/State_Bahamut_Intro.h"
+
+// ----- Weapon -------
+#include "Boss/Bahamut/Weapon/Bahamut_Clo.h"
+#include "Boss/Bahamut/Weapon/Bahamut_Breath.h"
+#include "Boss/Bahamut/Weapon/Bahamut_Body.h"
+#include "Boss/Bahamut/Weapon/Bahamut_DarkClaw.h"
+#include "Boss/Bahamut/Weapon/Bahamut_HeavyStrike.h"
+#include "Boss/Bahamut/Weapon/Bahamut_Inferno.h"
+#include "Boss/Bahamut/Weapon/Bahamut_Grab.h"
+#include "Boss/Bahamut/Weapon/Bahamut_FireBall.h"
+#include "Boss/Bahamut/Weapon/Bahamut_Aura.h"
+#include "Boss/Bahamut/Weapon/Bahamut_Meteor.h"
+#include "Boss/Bahamut/Weapon/Bahamut_FlareBall.h"
