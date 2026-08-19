@@ -1,420 +1,411 @@
-# C++ Data-Driven Runtime Tool System
+# DirectX11 3D Action Game Team Project
 
-DirectX11 기반 3D 팀 프로젝트에서 구현한
-**C++ 데이터 기반 런타임 객체 관리 및 내부 편집 툴 시스템**입니다.
+## 1. 프로젝트 소개
 
-원본 프로젝트는 3D 액션 게임 형태로 제작되었지만, 이 Repository에서는 게임 연출 결과보다
-**툴에서 데이터를 제작하고 저장한 뒤, 런타임에서 이를 로드하여 객체를 생성·실행·재사용하는 구조**에 초점을 맞췄습니다.
+DirectX11 기반으로 제작한 3D 액션 게임 팀 프로젝트입니다.
 
-> **Internal Tool → JSON Data → Runtime Load → Object Creation → Execution → Object Reuse**
+FF7 Remake 스타일의 실시간 전투를 목표로 보스전, 캐릭터 액션, 전투 이펙트, 후처리 효과 등을 구현했습니다.
 
-주요 구현 및 연동 요소는 다음과 같습니다.
+저는 이 프로젝트에서 **이펙트 시스템 전반과 이펙트 제작 툴 개발**을 담당했습니다.
 
-* ImGui 기반 내부 편집 툴 구현
-* JSON 기반 데이터 저장 / 로드
-* 런타임 객체 생성 및 생명주기 관리
-* 팀 공용 Prototype 구조와 런타임 객체 생성 과정 연동
-* 팀 공용 Object Pool 구조와 반복 객체 재사용 과정 연동
-* Manager를 통한 데이터 로드 및 객체 생성 진입점 구성
-* Group 기반 복수 객체 순차 실행
-* 실시간 상태 및 GPU Buffer 데이터 갱신
+주요 담당 범위는 Particle Effect, Trail Effect, Mesh Effect, Effect Tool, Effect Group, Effect Manager이며, 보스 파트에서는 기존 State / Bullet 구조를 활용하여 보스 패턴과 전투 이펙트를 연동했습니다.
+
+이 프로젝트의 핵심은 단순히 개별 이펙트를 제작한 것이 아니라,
+
+**이펙트 제작 툴 → 개별 이펙트 시스템 → 그룹 이펙트 → 런타임 로드 및 생성 관리**로 이어지는 이펙트 제작 파이프라인을 구성한 점입니다.
 
 ---
 
-## 1. 개발 정보
+## 2. 개발 정보
 
-| 항목              | 내용                                                                           |
-| --------------- | ---------------------------------------------------------------------------- |
-| 프로젝트 형태         | 팀 프로젝트                                                                       |
-| 원본 프로젝트         | DirectX11 기반 3D 액션 게임                                                        |
-| 담당 영역           | 내부 편집 툴, 데이터 저장/로드, Effect Manager, 런타임 객체, Group 실행 구조, 공용 객체 생성/재사용 시스템 연동 |
-| Language        | C++                                                                          |
-| UI / Tool       | ImGui, ImGuizmo                                                              |
-| Data            | JSON                                                                         |
-| Graphics API    | DirectX11                                                                    |
-| Shader          | HLSL                                                                         |
-| IDE             | Visual Studio                                                                |
-| Version Control | GitHub, Sourcetree                                                           |
-
-### 담당 역할
-
-* ImGui 기반 내부 편집 툴 구현
-* 객체 데이터 JSON 저장 / 로드 구조 구현
-* Effect 데이터 로드 및 런타임 객체 생성 Manager 구현
-* 팀 공용 Prototype 시스템과 Effect 객체 생성 과정 연동
-* 팀 공용 Object Pool 시스템과 Effect 객체 재사용 과정 연동
-* Group 기반 복수 객체 실행 구조 구현
-* 객체별 Transform, 상태, 수명, 실행 여부 관리
-* 런타임 데이터 실시간 갱신
-* Instancing / Dynamic Vertex Buffer 기반 데이터 처리
-
-> **Prototype과 Object Pool의 기반 시스템 자체는 팀 공용 구조를 사용했으며,
-> Effect 시스템에서 해당 구조를 활용할 수 있도록 데이터 로드 및 객체 생성·재사용 과정을 연동했습니다.**
+| 항목 | 내용 |
+| --- | --- |
+| 프로젝트명 | [프로젝트명 입력] |
+| 개발 형태 | 팀 프로젝트 |
+| 개발 기간 | [개발 기간 입력] |
+| 개발 인원 | [팀 인원 입력] |
+| 담당 역할 | 이펙트 시스템, 이펙트 툴, 일부 보스 패턴 및 이펙트 연동 |
+| 사용 언어 | C++ |
+| Graphics API | DirectX11 |
+| Shader | HLSL |
+| Tool/UI | ImGui, ImGuizmo |
+| Data | JSON |
+| IDE | Visual Studio |
+| Version Control | GitHub |
 
 ---
 
-## 2. 시스템 구조
+## 3. 담당 역할
 
-```text
-┌─────────────────────────────┐
-│        Internal Tool        │
-│                             │
-│  Object Edit UI             │
-│  Resource Search / Preview  │
-│  Transform Gizmo            │
-│  Runtime Preview            │
-│  Group Editor               │
-└──────────────┬──────────────┘
-               │ Save / Load
-               ▼
-┌─────────────────────────────┐
-│          Data Layer         │
-│                             │
-│  JSON Object Data           │
-│  JSON Group Data            │
-│  Resource Path Data         │
-└──────────────┬──────────────┘
-               │ Load
-               ▼
-┌─────────────────────────────┐
-│      Effect Runtime Layer   │
-│                             │
-│  Effect Manager             │ ← Implemented
-│  Effect Group               │ ← Implemented
-│  Runtime Effect Objects     │ ← Implemented
-│                             │
-│  Prototype System           │ ← Team Framework / Integrated
-│  Object Pool                │ ← Team Framework / Integrated
-└─────────────────────────────┘
+이 프로젝트에서 저는 전투 연출에 사용되는 이펙트 시스템 전반을 담당했습니다.
+
+### 주요 구현 범위
+
+- ImGui / JSON 기반 Effect Tool 구현
+- Instancing Buffer 기반 Particle Effect 구현
+- Dynamic Vertex Buffer 기반 Trail Effect 구현
+- 모델 리소스 기반 Mesh Effect 구현
+- 여러 이펙트를 시간차로 재생하는 Effect Group 구현
+- JSON 이펙트 데이터를 로드하고 Object Pool과 연동하는 Effect Manager 구현
+- HLSL 기반 이펙트 셰이더 구현
+- 보스 패턴 일부 구현 및 보스 전투 상황에 맞는 이펙트 연동
+
+---
+
+## 4. 시스템 구조
+
+```
+Effect Tool
+ ├─ Particle Edit
+ ├─ Mesh Edit
+ ├─ Trail Edit
+ └─ Group Effect Edit
+
+Effect Data
+ └─ JSON Save / Load
+
+Runtime Effect System
+ ├─ Particle Effect
+ ├─ Mesh Effect
+ ├─ Trail Effect
+ ├─ Effect Group
+ └─ Effect Manager
+
+Rendering
+ ├─ Instancing Buffer
+ ├─ Dynamic Vertex Buffer
+ ├─ HLSL Shader Pass
+ └─ Blend Effect Render Group
 ```
 
-### 실행 흐름
+이펙트 툴에서 제작한 데이터는 JSON으로 저장되고, 런타임에서는 Effect Manager가 해당 데이터를 로드하여 프로토타입과 Object Pool에 등록합니다.
 
-1. 내부 편집 툴에서 객체 속성을 생성하거나 수정합니다.
-2. 편집한 데이터를 JSON 파일로 저장합니다.
-3. 런타임 초기화 과정에서 Effect Manager가 JSON 데이터를 로드합니다.
-4. 로드한 데이터를 기반으로 팀 공용 Prototype 시스템에 Effect 객체를 등록합니다.
-5. 반복 생성이 필요한 객체는 설정된 개수를 기준으로 팀 공용 Object Pool 시스템과 연결합니다.
-6. 런타임에서는 Effect Manager를 통해 필요한 객체를 요청합니다.
-7. 생성된 객체는 상태, 수명, Transform, 실행 조건에 따라 갱신됩니다.
-8. 복수 객체를 조합한 경우 Group이 각 객체의 시작 시간을 기준으로 실행 순서를 제어합니다.
-9. 실행이 종료된 객체는 프로젝트의 공용 객체 관리 구조를 통해 재사용됩니다.
+이후 게임 로직에서는 Effect Manager를 통해 상황에 맞는 이펙트를 생성하고, Effect Group은 여러 개별 이펙트를 시간차로 재생하여 복합적인 전투 연출을 구성합니다.
 
 ---
 
-## 3. 핵심 구현
+## 5. 핵심 구현
 
-### 3.1 ImGui 기반 내부 편집 툴
+## 5.1 ImGui / JSON 기반 Effect Tool
 
-#### 문제
+### 개요
 
-객체의 위치, 회전, 크기, 색상, 수명, 이동 방식, 리소스 등의 값을 코드에 직접 작성하면 수정할 때마다 코드 변경과 재실행이 필요했습니다.
+파티클, 메쉬, 트레일 이펙트를 제작하기 위한 ImGui 기반 Effect Tool을 구현했습니다.
 
-또한 객체 종류와 설정값이 늘어날수록 반복적인 데이터 수정과 관리 비용이 증가했습니다.
+툴에서는 이펙트 타입별 편집 탭을 제공하여 텍스처, 모델, 셰이더 패스, Transform, 수명, 색상, 이동 방식, Dissolve, Bone Socket 등의 값을 조정할 수 있도록 구성했습니다.
 
-#### 구현
+또한 ImGuizmo를 연동하여 이펙트의 위치, 회전, 크기를 화면에서 직접 조작할 수 있게 했고, JSON 저장/로드를 통해 툴에서 제작한 이펙트 데이터를 런타임에서도 재사용할 수 있도록 만들었습니다.
 
-ImGui 기반 내부 편집 툴을 만들어 런타임 객체의 데이터를 UI에서 직접 생성하고 수정할 수 있도록 했습니다.
+### 문제
 
-주요 기능은 다음과 같습니다.
+이펙트는 위치, 크기, 회전, 색상, 텍스처, 수명, 셰이더 패스, 이동 방식 등 조정해야 할 값이 많습니다.
 
-* 객체 생성 / 삭제
-* 객체 데이터 저장 / 로드
-* 텍스처 및 모델 리소스 선택
-* 리소스 목록 자동 로드
-* 리소스 검색 및 미리보기
-* Transform 편집
-* ImGuizmo 기반 위치 / 회전 / 크기 조작
-* 변경 데이터 실시간 Preview
-* 여러 객체를 묶는 Group 편집
-* Group 내부 객체별 시작 시간 설정
-* 저장된 Group 재로드 및 수정
+이 값들을 코드에서 직접 수정하고 다시 빌드하는 방식은 반복 작업이 많고, 원하는 연출을 빠르게 확인하기 어렵습니다.
 
-#### 결과
+### 해결
 
-코드를 직접 수정하지 않고 객체 데이터를 편집하고 결과를 확인할 수 있게 되었으며,
-툴에서 제작한 데이터를 런타임에서 다시 사용할 수 있는 제작 흐름을 구성했습니다.
+ImGui 기반 Effect Tool을 구현하여 이펙트 값을 툴에서 직접 수정하고, 생성된 이펙트 객체에 실시간으로 반영되도록 구성했습니다.
 
----
+또한 JSON 저장/로드 구조를 만들어 툴에서 제작한 데이터를 파일로 저장하고 런타임에서 재사용할 수 있도록 했습니다.
 
-### 3.2 JSON 기반 데이터 저장 / 로드
+### 주요 기능
 
-#### 문제
+- Particle / Mesh / Trail Effect 타입별 편집 탭
+- Diffuse / Mask / Noise / Dissolve Texture 선택
+- Effect Model 선택
+- 텍스처 미리보기
+- 리소스 검색 기능
+- ImGuizmo 기반 Transform 편집
+- JSON 저장 / 로드
+- Group Effect 편집
+- 개별 이펙트 시작 시간 설정
+- Object Pool 개수 설정
+- 기존 Group Effect 내 이펙트 수정
 
-객체 설정값이 코드에 직접 포함되어 있으면 값을 변경할 때마다 소스를 수정해야 하며, 여러 객체의 상태를 일관된 형태로 저장하고 복원하기 어렵습니다.
+### 결과
 
-특히 여러 객체를 하나의 Group으로 구성할 경우 객체의 타입, 리소스, Transform, 실행 시간 등의 정보를 함께 관리할 필요가 있었습니다.
+코드 수정 없이 이펙트를 제작, 수정, 저장, 로드할 수 있는 데이터 기반 제작 환경을 만들었습니다.
 
-#### 구현
+이를 통해 개별 이펙트 제작뿐 아니라 여러 이펙트를 조합한 Group Effect까지 툴에서 구성할 수 있었습니다.
 
-객체별 데이터를 JSON으로 직렬화하고 다시 역직렬화할 수 있도록 `Write / Load` 구조를 구현했습니다.
+### 자료 위치
 
-저장 데이터는 객체 타입에 따라 다르지만 주요 데이터는 다음과 같습니다.
-
-* 객체 타입
-* 리소스 이름 및 경로
-* Transform
-* 수명 및 실행 조건
-* 색상
-* 속도 및 상태 변화 값
-* 렌더링 처리 타입
-* Group 내부 시작 시간
-* Object Pool에 준비할 객체 개수
-
-단일 객체 데이터와 Group 데이터를 분리했으며, 런타임에서는 개별 객체 데이터를 먼저 로드한 뒤 Group 데이터를 구성하도록 처리했습니다.
-
-#### 결과
-
-객체 설정을 실행 코드에서 데이터로 분리하여
-**툴에서 제작한 데이터를 저장하고 런타임에서 동일한 데이터로 객체를 구성하는 흐름**을 만들었습니다.
+- 시연 이미지: `Images/EffectTool_Main.png`
+- 시연 영상: `Videos/EffectTool_Demo.mp4`
+- 관련 코드:
+    - `CImgui_Window_EffectEdit`
+    - `CImgui_Tab_ParticleEdit`
+    - `CImgui_Tab_TrailEdit`
+    - `CImgui_Tab_TrailBufferEdit`
+    - `CImgui_Window_EffectGroup`
 
 ---
 
-### 3.3 Effect Manager와 공용 객체 생성 시스템 연동
+## 5.2 Instancing Buffer 기반 Particle Effect
 
-#### 문제
+### 개요
 
-Effect 객체 종류와 데이터 파일이 늘어나면서 각 사용 위치에서 데이터 로드, 객체 타입 판별, 객체 생성 과정을 직접 처리하면 생성 로직이 여러 곳으로 분산되는 문제가 있었습니다.
+다수의 파티클을 렌더링하기 위한 Instancing Buffer 기반 Particle Effect 시스템을 구현했습니다.
 
-또한 반복적으로 생성되는 객체를 프로젝트의 공용 Object Pool 구조와 연결할 필요가 있었습니다.
+파티클 이펙트는 `CParticle`에서 생명주기와 렌더링 흐름을 관리하고, 실제 파티클 인스턴스 데이터는 `CVIBuffer_Instancing`에서 관리하도록 역할을 분리했습니다.
 
-#### 구현
+각 파티클 인스턴스는 위치, 크기, 회전, 색상, 수명, 이동 방향, 스프라이트 UV 등의 데이터를 가지고 있으며, 매 프레임 갱신된 인스턴스 데이터를 GPU 버퍼에 반영한 뒤 Instancing 방식으로 렌더링했습니다.
 
-Effect Manager가 Effect 데이터 디렉터리를 탐색하고 JSON 파일을 로드하도록 구성했습니다.
+### 문제
 
-로드된 데이터의 객체 타입을 판별한 뒤 프로젝트에서 사용하던 **공용 Prototype 시스템에 Effect 객체를 등록**하도록 연결했습니다.
+전투 중에는 폭발, 먼지, 불꽃, 마법 효과처럼 짧은 시간 동안 다수의 파티클이 동시에 발생합니다.
 
-반복 생성되는 객체는 JSON에 저장된 Pool 개수를 읽어 **팀 공용 Object Pool 시스템에 필요한 객체를 준비하도록 연동**했습니다.
+이를 각각 개별 오브젝트로 관리하면 객체 수가 많아지고 렌더링 흐름이 복잡해질 수 있습니다.
 
-```text
-JSON Effect Data
-       ↓
- Effect Manager
-       ↓
-Object Type Check
-       ↓
-Team Prototype System
-       ↓
-Team Object Pool System
-       ↓
-Runtime Effect Object
-```
+### 해결
 
-런타임 코드에서는 구체적인 데이터 로드나 Prototype 등록 과정을 직접 처리하지 않고 Effect Manager를 통해 객체를 사용할 수 있도록 구성했습니다.
+여러 파티클을 하나의 파티클 이펙트 객체 안에서 관리하고, 각 파티클의 상태를 인스턴스 데이터로 갱신하는 구조를 구현했습니다.
 
-#### 역할 구분
+위치, 크기, 회전, 색상, 수명, 스프라이트, 마스크 인덱스 등을 per-instance 데이터로 관리하고, `DrawIndexedInstanced`를 통해 렌더링했습니다.
 
-* **Effect Manager 및 Effect 데이터 로드 흐름:** 직접 구현
-* **Effect 객체와 Prototype 시스템 연결:** 담당
-* **Effect 객체와 Object Pool 시스템 연결:** 담당
-* **Prototype 기반 시스템 자체:** 팀 공용 시스템 사용
-* **Object Pool 기반 시스템 자체:** 팀 공용 시스템 사용
+또한 Geometry Shader를 활용하여 Point 형태의 파티클을 Billboard Quad로 확장하고, Direction Billboard, Fire, Distortion 등 여러 셰이더 패스를 지원했습니다.
 
-#### 결과
+### 주요 기능
 
-Effect 객체의 데이터 로드와 생성 과정을 Manager를 중심으로 구성했고,
-기존 팀 공용 객체 생성·재사용 시스템을 Effect 런타임에 연결하여 사용할 수 있도록 했습니다.
+- Instancing Buffer 기반 파티클 렌더링
+- per-instance 위치, 크기, 회전, 색상, 수명 관리
+- Billboard / Direction Billboard 지원
+- Fire / Distortion 파티클 셰이더 패스
+- Sprite Animation
+- Mask Array
+- 다양한 이동 타입
+- 다양한 종료 조건
+- JSON 저장 / 로드
+- Effect Tool 연동
 
----
+### 결과
 
-### 3.4 Group 기반 순차 실행 시스템
+다수의 파티클을 하나의 렌더링 흐름에서 처리할 수 있었고, 파티클별 상태를 개별적으로 제어할 수 있었습니다.
 
-#### 문제
+이를 통해 보스전, 스킬, 폭발, 불꽃, 왜곡형 이펙트 등 다양한 전투 연출을 제작할 수 있었습니다.
 
-여러 객체로 하나의 복합 동작을 구성할 때 각 객체를 코드에서 개별 생성하고 실행 시간을 직접 관리하면 실행 순서와 상대 위치 관리가 복잡해집니다.
+### 자료 위치
 
-또한 한 번 구성한 복합 동작을 하나의 데이터 단위로 저장하고 다시 사용할 필요가 있었습니다.
-
-#### 구현
-
-여러 객체를 하나의 Group으로 묶고 각 객체의 `Start Time`을 데이터로 저장했습니다.
-
-Group은 매 프레임 누적 시간과 각 객체의 시작 시간을 비교하여 실행 시점이 된 객체를 활성화합니다.
-
-각 Group Object는 다음 데이터를 관리합니다.
-
-* 객체 참조
-* 객체 타입
-* 데이터 경로 및 이름
-* 시작 시간
-* Local Transform
-* 실행 종료 여부
-
-Group Transform과 하위 객체의 Local Transform을 조합하여 Group 전체 위치가 변경되더라도 내부 객체의 상대적인 배치가 유지되도록 구성했습니다.
-
-#### 결과
-
-여러 객체의 **배치와 실행 순서를 하나의 데이터 단위로 저장하고 재사용**할 수 있게 되었습니다.
-
-툴에서 Group을 생성하고 JSON으로 저장한 뒤 런타임에서 동일한 구성으로 실행할 수 있습니다.
+- 시연 이미지: `Images/ParticleEffect.png`
+- 시연 영상: `Videos/ParticleEffect_Demo.mp4`
+- 관련 코드:
+    - `CParticle`
+    - `CVIBuffer_Instancing`
+    - `CVIBuffer_Particle_Point`
+    - `Shader_Effect_Particle`
 
 ---
 
-### 3.5 실시간 상태 및 Buffer 데이터 갱신
+## 5.3 Dynamic Vertex Buffer 기반 Trail Effect
 
-런타임 Effect 객체는 매 프레임 위치, 크기, 회전, 색상, 수명 및 실행 상태 등의 데이터를 갱신합니다.
+### 개요
 
-일부 Effect는 다수의 데이터를 한 번에 처리하거나 실시간으로 형상이 변화하기 때문에 DirectX11 Buffer를 직접 갱신하도록 구현했습니다.
+캐릭터 공격, 무기 궤적, 스킬 연출 등에 사용할 수 있는 Trail Effect 시스템을 구현했습니다.
 
-#### Instancing Buffer
+Trail Effect는 움직이는 오너 객체의 위치를 매 프레임 추적하여, 이전 위치와 현재 위치를 연결한 동적 메시 형태의 궤적을 생성하는 방식으로 구현했습니다.
 
-다수의 Particle 상태를 각각 별도 객체로 관리하는 대신, 하나의 시스템에서 `per-instance` 데이터를 관리하도록 구성했습니다.
+`CTrail_Buffer`는 트레일 이펙트 객체의 생명주기와 오너 행렬 계산, 렌더링 흐름을 담당하고, `CVIBuffer_Trail`은 실제 Dynamic Vertex Buffer를 갱신하여 트레일 메시를 구성하도록 분리했습니다.
 
-각 Instance는 다음과 같은 데이터를 가집니다.
+### 문제
 
-* 위치
-* 크기
-* 회전
-* 색상
-* 수명
-* 이동 방향
-* Index 정보
+무기 궤적이나 스킬 잔상은 단순 파티클과 다르게, 움직이는 오브젝트의 이전 위치와 현재 위치를 이어서 띠 형태의 메시를 만들어야 했습니다.
 
-Instance 데이터를 GPU Buffer에 갱신하고 일괄 처리하도록 구성했습니다.
+또한 빠르게 움직이는 오브젝트를 단순 직선으로 연결하면 트레일이 각져 보일 수 있습니다.
 
-#### Dynamic Vertex Buffer
+### 해결
 
-움직이는 객체를 따라 실시간으로 변화하는 Trail 데이터를 처리하기 위해 정점 데이터를 매 프레임 갱신했습니다.
+Dynamic Vertex Buffer를 사용하여 매 프레임 오너 기준의 트레일 시작점과 끝점을 추가하고, 최대 정점 수를 초과하면 오래된 정점을 제거하도록 구성했습니다.
 
-새로운 정점을 추가하고 오래된 정점을 제거하며, 필요한 구간에는 보간을 적용하여 연속적인 Trail 데이터를 생성하도록 구성했습니다.
+또한 Catmull-Rom 보간을 적용하여 빠른 움직임에서도 부드러운 궤적이 이어지도록 처리했습니다.
 
----
+Bone Socket을 지원하여 무기나 캐릭터의 특정 본 위치를 기준으로 트레일이 생성되도록 구성했습니다.
 
-## 4. Source Code
+### 주요 기능
 
-> 이 Repository의 `src` 디렉터리는 전체 팀 프로젝트 소스가 아니라
-> **제가 직접 구현했거나 Effect 시스템에서 연동을 담당한 부분의 구조를 확인할 수 있도록 선별한 코드**입니다.
+- Dynamic Vertex Buffer 기반 Trail Mesh 갱신
+- 오너 이동 추적
+- Trail 시작점 / 끝점 설정
+- 최대 정점 수 기반 길이 제한
+- Catmull-Rom 보간
+- Bone Socket 기반 위치 계산
+- UV 좌표 실시간 갱신
+- Diffuse / Mask / Noise / Distortion 셰이더 패스
+- JSON 저장 / 로드
+- Effect Tool 연동
 
-원본 프로젝트의 공통 `Engine`, `GameObject`, `Resource`, `Prototype`, `Object Pool` 시스템 등에 의존하는 코드가 포함되어 있기 때문에 **이 Repository 단독으로는 빌드되지 않습니다.**
+### 결과
 
-Prototype과 Object Pool의 기반 구현은 팀 공용 시스템이므로 Repository에 포함하지 않았으며,
-해당 시스템과 Effect Manager 및 Runtime Object를 연결하는 코드를 중심으로 포함했습니다.
+캐릭터 무기, 파츠, 이펙트 오브젝트에 자연스러운 궤적 이펙트를 붙일 수 있었습니다.
 
-```text
-src/
-├── Tool/       # ImGui 기반 데이터 편집 툴
-├── Runtime/    # Effect Object / Manager / Group
-├── Buffer/     # Instancing / Dynamic Buffer
-└── Shader/     # Effect Rendering Shader
-```
+Bone Socket과 오너 타입별 행렬 계산을 지원하여 일반 오브젝트뿐 아니라 캐릭터 파츠나 무기 본에 붙는 트레일도 처리할 수 있었습니다.
 
-### Internal Tool
+### 자료 위치
 
-* [`Imgui_Window_EffectEdit`](src/Tool/Imgui_Window_EffectEdit.cpp)
-
-  * Effect 편집 Window 및 전체 편집 흐름 관리
-
-* [`Imgui_Tab_EffectTabBase`](src/Tool/Imgui_Tab_EffectTabBase.cpp)
-
-  * Effect 타입별 공통 편집 인터페이스
-
-* [`Imgui_Tab_ParticleEdit`](src/Tool/Imgui_Tab_ParticleEdit.cpp)
-
-  * Particle 데이터 편집
-
-* [`Imgui_Window_EffectGroup`](src/Tool/Imgui_Window_EffectGroup.cpp)
-
-  * Group 구성 및 객체별 실행 시간 편집
-
-### Runtime Object System
-
-* [`Effect_Manager`](src/Runtime/Effect_Manager.cpp)
-
-  * Effect 데이터 파일 탐색 및 로드
-  * 객체 타입 판별
-  * 공용 Prototype / Object Pool 시스템 연동
-  * Runtime Effect Object 생성 흐름 관리
-
-* [`Effect_Group`](src/Runtime/Effect_Group.cpp)
-
-  * 복수 객체의 실행 시간 및 상태 관리
-  * Group / Local Transform 처리
-
-* [`Particle`](src/Runtime/Particle.cpp)
-
-  * Particle 객체의 런타임 상태 및 데이터 처리
-
-* [`Trail_Effect`](src/Runtime/Trail_Effect.cpp)
-
-  * Trail 객체의 런타임 동작 처리
-
-### Buffer / Runtime Data
-
-* [`VIBuffer_Instancing`](src/Buffer/VIBuffer_Instancing.cpp)
-
-  * Instance 상태 데이터 관리 및 GPU Buffer 갱신
-
-* [`VIBuffer_Particle_Point`](src/Buffer/VIBuffer_Particle_Point.cpp)
-
-  * Particle Instance 데이터 처리
-
-* [`VIBuffer_Trail`](src/Buffer/VIBuffer_Trail.cpp)
-
-  * 실시간 Trail Vertex 생성 및 갱신
-
-### Shader / Rendering Data
-
-* `Shader_Effect_Particle`
-* `Shader_Effect_Trail`
-* `Shader_Effect_Mesh`
+- 시연 이미지: `Images/TrailEffect.png`
+- 시연 영상: `Videos/TrailEffect_Demo.mp4`
+- 관련 코드:
+    - `CTrail_Buffer`
+    - `CVIBuffer_Trail`
+    - `Shader_Effect_Trail`
 
 ---
 
-## 5. 설계하면서 고민한 부분
+## 6. 보조 구현
 
-### 데이터와 런타임 로직의 분리
+## 6.1 Model 기반 Mesh Effect
 
-객체의 세부 설정을 코드에 직접 작성하기보다 JSON 데이터로 분리하고, 런타임 시스템은 해당 데이터를 읽어 객체를 구성하도록 했습니다.
+3D 모델 리소스를 활용한 Mesh Effect 시스템을 구현했습니다.
 
-이를 통해 객체 설정 변경과 실행 로직 변경을 분리할 수 있었습니다.
+모델 태그를 기반으로 이펙트용 모델을 연결하고, 시간에 따라 위치, 크기, 회전, 색상, UV, Dissolve 값을 갱신하여 전투 연출에 사용할 수 있는 3D 이펙트 객체로 구성했습니다.
 
-### 기존 공용 시스템과의 연동
+Mesh Effect 전용 셰이더에서는 Diffuse / Mask / Noise / Dissolve Texture를 조합하고, Default / Clamp / Distortion / Dissolve / RadialBlur 패스를 분리하여 다양한 표현을 지원했습니다.
 
-프로젝트에는 이미 Prototype과 Object Pool 같은 공용 객체 관리 구조가 존재했습니다.
+또한 Dissolve가 시작될 때 Mesh Vertex 기반 Particle Effect를 함께 생성할 수 있도록 하여 모델 이펙트와 파티클 이펙트를 연동했습니다.
 
-동일한 기능을 Effect 시스템 내부에 다시 구현하지 않고, Effect Manager가 데이터를 읽어 기존 공용 시스템에 필요한 정보를 전달하도록 연결했습니다.
+### 관련 코드
 
-이를 통해 팀 프로젝트의 기존 구조를 활용하면서 Effect 시스템의 데이터 흐름을 구성했습니다.
-
-### 객체 생성 진입점의 집중
-
-런타임의 여러 위치에서 Effect 데이터 로드와 객체 생성 과정을 직접 처리하지 않고 Effect Manager를 진입점으로 사용했습니다.
-
-호출부는 구체적인 데이터 로드 및 공용 객체 관리 시스템과의 연동 과정을 알 필요 없이 필요한 Effect를 요청할 수 있도록 구성했습니다.
-
-### 단일 객체와 복합 실행 구조의 분리
-
-개별 Effect 객체 자체의 실행 로직과 여러 객체의 실행 순서를 관리하는 Group 로직을 분리했습니다.
-
-개별 객체는 자신의 상태와 동작을 관리하고, Group은 시간과 배치 관계를 담당하도록 역할을 나눴습니다.
+- `CTrail_Effect`
+- `Shader_Effect_Mesh`
+- `CEffect_Manager::Create_EffectMesh_VTX_Particle`
 
 ---
 
-## 6. 개선하고 싶은 부분
+## 6.2 Effect Group / Effect Manager
 
-현재 구조를 다시 설계한다면 다음 부분을 개선하고 싶습니다.
+여러 개별 이펙트를 하나의 복합 연출로 구성하기 위한 Effect Group 시스템과, 이펙트 데이터 로드 및 생성을 담당하는 Effect Manager를 구현했습니다.
 
-* Effect Manager가 담당하는 책임을 `Loader`, `Factory`, `Pool Registry` 등으로 분리
-* JSON Schema 또는 별도 검증 계층을 통한 데이터 유효성 검사 추가
-* 잘못된 리소스 경로 및 데이터에 대한 오류 처리 강화
-* 객체 타입별 분기 로직을 Factory 구조로 정리
-* Tool UI와 데이터 모델의 의존성 분리
-* Group 실행 로직을 보다 일반적인 Timeline / Scheduler 구조로 확장
-* 런타임 로그 및 디버깅 UI 강화
-* 파일 변경 감지를 이용한 Hot Reload 구조 개선
+Effect Group은 파티클, 메쉬, 트레일 이펙트를 그룹으로 묶고, 각 이펙트의 시작 시간을 기준으로 순차적으로 활성화합니다.
+
+또한 그룹의 월드 행렬과 하위 이펙트의 로컬 행렬을 조합하여, 복합 이펙트의 상대 배치를 유지한 채 이동하거나 오너를 따라갈 수 있도록 구성했습니다.
+
+Effect Manager는 JSON으로 저장된 이펙트 데이터를 로드하여 프로토타입과 Object Pool에 등록하고, 게임 로직에서 일반 이펙트, 히트 이펙트, 본 기반 이펙트, 메쉬 정점 기반 파티클 등을 쉽게 생성할 수 있는 인터페이스를 제공합니다.
+
+### 관련 코드
+
+- `CEffect_Group`
+- `CEffect_Manager`
+- `CObjPool_Manager`
 
 ---
 
-## 7. 프로젝트를 통해 배운 점
+## 7. 보스 파트 기여
 
-초기에는 개별 Effect 객체가 정상적으로 동작하도록 구현하는 데 집중했지만, 객체의 종류와 데이터가 늘어나면서 **개별 기능뿐 아니라 데이터를 제작하고 관리하는 구조가 중요하다는 점**을 경험했습니다.
+보스 파트에서는 기존 State / Bullet 구조를 활용하여 일부 보스 패턴을 구성하고, 전투 상황에 맞는 이펙트를 연동했습니다.
 
-이 과정에서 내부 편집 툴, JSON 데이터 저장/로드, Effect Manager, Group 실행 구조를 구현하고, 프로젝트에서 사용하던 Prototype 및 Object Pool 시스템과 Effect 객체를 연결했습니다.
+보스 구현 자체의 프레임워크를 새로 설계한 것은 아니지만, 기존 구조를 활용해 보스 패턴과 이펙트가 적절한 타이밍에 재생되도록 연결하는 작업을 수행했습니다.
 
-그 결과 다음과 같은 데이터 기반 실행 흐름을 구성했습니다.
+### 주요 기여
 
-> **Internal Tool → JSON Data → Runtime Load → Object Creation → Group Execution → Object Reuse**
+- 보스 State 구조 활용
+- Bullet 구조 활용
+- 보스 공격 패턴 일부 구성
+- 보스 공격 타이밍에 맞는 이펙트 연동
+- 전투 상황별 Particle / Mesh / Trail Effect 적용
 
-또한 팀 프로젝트에서는 모든 기반 시스템을 직접 구현하는 것뿐 아니라, **기존 공용 시스템의 역할과 인터페이스를 이해하고 자신이 담당한 기능과 올바르게 연동하는 것도 중요한 설계 작업**이라는 점을 경험했습니다.
+---
 
-이를 통해 C++ 객체지향 설계, 데이터 직렬화, 내부 툴 제작, 런타임 객체 관리, 실시간 데이터 갱신뿐 아니라 **기존 시스템과 새로운 기능을 연결하는 과정**을 경험할 수 있었습니다.
+## 8. 기술 스택
+
+### Language
+
+- C++
+- HLSL
+
+### Graphics
+
+- DirectX11
+- Render Target
+- Instancing
+- Dynamic Vertex Buffer
+- Geometry Shader
+- Pixel Shader
+- Blend State
+- Depth Stencil State
+
+### Tool / Data
+
+- ImGui
+- ImGuizmo
+- JSON
+- ImGuiFileDialog
+
+### Architecture / Pattern
+
+- GameObject / Component
+- Prototype
+- Object Pool
+- Manager
+- Effect Group
+- Data-driven Workflow
+
+---
+
+## 9. 주요 기술 포인트
+
+- DirectX11 기반 실시간 이펙트 시스템 구현
+- ImGui / ImGuizmo 기반 인게임 제작 툴 구현
+- JSON 기반 이펙트 데이터 저장/로드 구조
+- Instancing Buffer 기반 Particle Effect 구현
+- Dynamic Vertex Buffer 기반 Trail Effect 구현
+- Catmull-Rom 보간을 활용한 부드러운 트레일 생성
+- Bone Socket 기반 이펙트 위치 계산
+- 모델 기반 Mesh Effect 및 Dissolve / Distortion / RadialBlur 셰이더 패스 구현
+- 여러 이펙트를 시작 시간 기준으로 조합하는 Group Effect 구현
+- Effect Manager를 통한 데이터 로드, 프로토타입 등록, Object Pool 연동
+- HLSL 기반 Billboard, Fire, Distortion, Dissolve, Trail Shader 구현
+- 보스 패턴과 전투 이펙트 연동 경험
+
+---
+
+## 10. 시연 자료 구성
+
+### 추천 영상 구성
+
+| 구간 | 내용 |
+| --- | --- |
+| 0:00 ~ 0:15 | 최종 전투 장면 / 보스전 이펙트 결과 |
+| 0:15 ~ 0:45 | Effect Tool에서 Particle 값 수정 후 적용 |
+| 0:45 ~ 1:15 | Trail Effect / Bone Socket / Catmull-Rom 보간 결과 |
+| 1:15 ~ 1:45 | Mesh Effect / Dissolve / Distortion / RadialBlur |
+| 1:45 ~ 2:15 | Group Effect 시작 시간 조정 및 복합 이펙트 재생 |
+| 2:15 ~ 2:40 | JSON 저장/로드 및 런타임 재사용 구조 |
+| 2:40 ~ 3:00 | 핵심 기술 요약 |
+
+### README에 넣을 자료
+
+- `Images/FinalBattle_Effect.png`
+- `Images/EffectTool_Main.png`
+- `Images/Particle_Edit.png`
+- `Images/Trail_BoneSocket.png`
+- `Images/Mesh_Dissolve.png`
+- `Images/GroupEffect_Timeline.png`
+- `Videos/EffectSystem_Demo.mp4`
+
+---
+
+## 11. 프로젝트를 통해 배운 점
+
+이 프로젝트를 통해 단순히 화면에 보이는 이펙트를 만드는 것보다, 이펙트를 제작하고 재사용할 수 있는 구조를 만드는 것이 중요하다는 점을 배웠습니다.
+
+초기에는 개별 이펙트 구현에 집중했지만, 프로젝트가 진행되면서 이펙트 값을 빠르게 조정하고 저장할 수 있는 툴, 여러 이펙트를 조합할 수 있는 그룹 구조, 런타임에서 데이터를 로드하고 재사용할 수 있는 매니저 구조가 필요하다는 것을 느꼈습니다.
+
+그 결과 파티클, 트레일, 메쉬 이펙트를 각각 구현하는 데서 끝나지 않고, Effect Tool과 Effect Manager를 통해 데이터 기반 이펙트 제작 파이프라인을 구성했습니다.
+
+이 경험을 통해 C++ 객체 관리, DirectX11 렌더링 흐름, HLSL 셰이더, 동적 버퍼 갱신, 인스턴싱, 툴 제작, JSON 데이터화, 오브젝트 풀, 게임 시스템 설계에 대한 이해를 쌓을 수 있었습니다.
+
+---
+
+## 12. 면접에서 설명 가능한 질문
+
+- Effect Tool을 만든 이유는 무엇인가요?
+- 코드에서 직접 이펙트 값을 수정하는 방식과 비교했을 때 어떤 장점이 있나요?
+- Particle Effect에 Instancing Buffer를 사용한 이유는 무엇인가요?
+- Trail Effect에서 Dynamic Vertex Buffer를 사용한 이유는 무엇인가요?
+- Catmull-Rom 보간을 사용한 이유는 무엇인가요?
+- Bone Socket에 트레일을 붙일 때 어떤 행렬을 계산했나요?
+- Mesh Effect에서 Dissolve는 어떻게 처리했나요?
+- Effect Group에서 시작 시간 기반 재생은 어떻게 구현했나요?
+- Effect Manager는 어떤 역할을 하나요?
+- JSON 기반 데이터화의 장점은 무엇인가요?
+- Object Pool과 이펙트 시스템은 어떻게 연결했나요?
+- 이 구조에서 개선하고 싶은 부분은 무엇인가요?
